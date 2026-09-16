@@ -1,4 +1,4 @@
-# STCdle
+# Rydle
 
 A static daily Survivor Twin Cities castaway guessing game.
 
