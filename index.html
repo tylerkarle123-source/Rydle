@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#121213">
+  <meta name="description" content="STCdle — a daily Survivor Twin Cities castaway guessing game.">
+  <title>STCdle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="helpBtn" class="icon-btn" aria-label="How to play">?</button>
+    <div class="brand"><h1>STCdle</h1><span>Survivor Twin Cities</span></div>
+    <button id="statsBtn" class="icon-btn" aria-label="Statistics">▥</button>
+  </header>
+
+  <main class="app">
+    <nav class="mode-tabs" aria-label="Game mode">
+      <button class="tab active" data-mode="daily">Daily</button>
+      <button class="tab" data-mode="practice">Practice</button>
+    </nav>
+
+    <section class="intro">
+      <p id="modeDescription">One castaway appearance. Eight guesses. Same puzzle for everyone today.</p>
+      <div id="puzzleMeta" class="puzzle-meta"></div>
+    </section>
+
+    <form id="guessForm" class="guess-form" autocomplete="off">
+      <div class="search-wrap">
+        <label class="sr-only" for="guessInput">Castaway appearance</label>
+        <input id="guessInput" type="text" placeholder="Search castaway…" aria-autocomplete="list" aria-controls="suggestions">
+        <div id="suggestions" class="suggestions hidden" role="listbox"></div>
+      </div>
+      <button id="guessBtn" class="primary" type="submit">Guess</button>
+    </form>
+    <p id="message" class="message" aria-live="polite"></p>
+
+    <section class="board-wrap" aria-label="Guess board">
+      <div class="board">
+        <div class="headers"><div>Castaway</div><div>Season</div><div>Place</div><div>Gender</div><div>Color</div><div>Returnee</div></div>
+        <div id="rows"></div>
+      </div>
+    </section>
+
+    <section id="endPanel" class="end-panel hidden" aria-live="polite">
+      <h2 id="endTitle"></h2>
+      <p id="endAnswer"></p>
+      <div class="end-actions">
+        <button id="shareBtn" class="primary">Share results</button>
+        <button id="newPracticeBtn" class="secondary hidden">New practice game</button>
+      </div>
+      <p id="nextPuzzle" class="countdown"></p>
+    </section>
+
+    <details class="legend">
+      <summary>Clue rules</summary>
+      <p><span class="swatch green"></span> Exact match. <span class="swatch yellow"></span> Season is 1 away or placement is within 2. Gray means farther/different.</p>
+      <p><strong>Season:</strong> ↑ answer is later, ↓ answer is earlier. <strong>Placement:</strong> ↑ answer placed better, ↓ answer placed worse.</p>
+    </details>
+  </main>
+
+  <dialog id="helpDialog">
+    <button class="dialog-close" data-close="helpDialog" aria-label="Close">×</button>
+    <h2>How to play</h2>
+    <p>Guess the exact Survivor Twin Cities <strong>appearance</strong> in 8 tries. Returnee seasons are separate entries.</p>
+    <ul>
+      <li>Green = exact match.</li><li>Yellow = season ±1 or placement ±2.</li><li>Season ↑ later / ↓ earlier.</li><li>Placement ↑ better / ↓ worse.</li><li>Gender, starting tribe color, and returnee are green or gray only.</li>
+    </ul>
+    <p>Only full-length Seasons 1–8 are included.</p>
+  </dialog>
+
+  <dialog id="statsDialog">
+    <button class="dialog-close" data-close="statsDialog" aria-label="Close">×</button>
+    <h2>Daily statistics</h2>
+    <div class="stat-grid"><div><b id="statPlayed">0</b><span>Played</span></div><div><b id="statWin">0%</b><span>Win %</span></div><div><b id="statStreak">0</b><span>Streak</span></div><div><b id="statMax">0</b><span>Max</span></div></div>
+    <h3>Guess distribution</h3><div id="distribution" class="distribution"></div>
+  </dialog>
+
+  <script src="players.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
