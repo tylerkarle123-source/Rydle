@@ -5,7 +5,7 @@ A static daily Survivor Twin Cities castaway-appearance guessing game.
 ## Modes
 - **Daily (Classic):** the original full-length Seasons 1–8 database. Its launch date, player ordering, seed, localStorage keys, and answer sequence are preserved.
 - **Practice:** unlimited random Classic games.
-- **Hard:** every STC event through Season 8.75, including S3.5, S4.5, S6.5, S7.5, S8.25, S8.5, and S8.75. Hard has its own daily answer sequence, saved progress, and statistics.
+- **Hard:** every STC event through Season 8.75, including S3.5, S4.5, S6.5, S7.5, S8.25, S8.5, and S8.75. Hard has its own daily answer sequence, saved progress, and statistics. Sober vs Drunk vs Stoner is NOT included.
 
 ## Hard rules
 Hard uses seven clues: Castaway, Season, Place, Gender, Color, Returnee, Format.
