@@ -38,5 +38,5 @@ Edit `players.js`. Each appearance is stored with name, placement, gender, start
 ## Important data rules
 - Mini/one-day seasons are excluded.
 - Starting tribe color is used, not swap or merge tribe color.
-- Returnee status belongs to an appearance, not a person.
+- Returnee status belongs to a person, not an appearance.
 - Returnee appearances are separate guessable entries.
