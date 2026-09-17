@@ -27,3 +27,5 @@ Hard uses seven clues: Castaway, Season, Place, Gender, Color, Returnee, Format.
 Replace/update the files in the repository root with these files, including the new `players-hard.js`, and commit to `main`. GitHub Pages will redeploy the same public URL.
 
 **Important:** do not change the Classic launch date (`2026-09-16`), Classic seed (`STCdle-S1-S8-v1`), or Classic player ordering after publication. Those preserve historical Classic daily answers.
+
+- Unlimited Hard Practice mode with the complete Hard pool; no effect on daily stats or streaks.
