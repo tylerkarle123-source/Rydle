@@ -26,8 +26,82 @@ function render(){rows.innerHTML='';guesses.forEach(g=>{const r=document.createE
  const won=guesses.at(-1)?.id===answer.id;$('#puzzleMeta').textContent=mode==='daily'?`STCdle #${Math.max(1,puzzleNumber())} · ${dateKey()}`:'Random practice puzzle';$('#modeDescription').textContent=mode==='daily'?'One castaway appearance. Eight guesses. Same puzzle for everyone today.':'Unlimited random puzzles. Practice games do not affect your streak.';document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));input.disabled=finished;$('#guessBtn').disabled=finished;$('#newPracticeBtn').classList.toggle('hidden',mode!=='practice');
  if(finished){endPanel.classList.remove('hidden');$('#endTitle').textContent=won?'You survived!':'The tribe has spoken.';$('#endAnswer').innerHTML=`The answer was <strong>${answer.displayName}</strong> — ${ordinal(answer.placement)}, ${answer.startingTribe} (${answer.tribeColor}).`;$('#nextPuzzle').textContent=mode==='daily'?'Next daily puzzle arrives at local midnight.':'';}else endPanel.classList.add('hidden');
 }
-function showSuggestions(){const q=norm(input.value.trim());suggestions.innerHTML='';selected=null;if(!q){suggestions.classList.add('hidden');return}const used=new Set(guesses.map(g=>g.id));const hits=P.filter(p=>!used.has(p.id)&&norm(p.displayName).includes(q)).slice(0,12);if(!hits.length){suggestions.classList.add('hidden');return}hits.forEach(p=>{const b=document.createElement('button');b.type='button';b.className='suggestion';b.textContent=p.displayName;b.addEventListener('click',()=>{selected=p;input.value=p.displayName;suggestions.classList.add('hidden');input.focus()});suggestions.appendChild(b)});suggestions.classList.remove('hidden')}
-function getStats(){return JSON.parse(localStorage.getItem('stcdle_stats_v1')||'{"played":0,"wins":0,"streak":0,"maxStreak":0,"lastCompleted":null,"distribution":[0,0,0,0,0,0,0,0]}')}
+function showSuggestions() {
+  const q = norm(input.value.trim());
+  suggestions.innerHTML = '';
+  selected = null;
+
+  if (!q) {
+    suggestions.classList.add('hidden');
+    return;
+  }
+
+  const used = new Set(guesses.map(g => g.id));
+
+  const hits = P
+    .filter(p => {
+      if (used.has(p.id)) return false;
+
+      const fullName = norm(p.name);
+      const words = fullName.split(/\s+/);
+
+      return (
+        fullName.includes(q) ||
+        words.some(word => word.startsWith(q))
+      );
+    })
+    .sort((a, b) => {
+      const aName = norm(a.name);
+      const bName = norm(b.name);
+
+      const aWords = aName.split(/\s+/);
+      const bWords = bName.split(/\s+/);
+
+      function score(name, words) {
+        if (name === q) return 0;
+        if (words.some(word => word === q)) return 1;
+        if (words[0]?.startsWith(q)) return 2;
+        if (words.some(word => word.startsWith(q))) return 3;
+        if (name.includes(q)) return 4;
+        return 5;
+      }
+
+      const difference =
+        score(aName, aWords) - score(bName, bWords);
+
+      if (difference !== 0) return difference;
+
+      // For multiple appearances of the same player,
+      // show the earlier season first.
+      if (aName === bName) return a.season - b.season;
+
+      return aName.localeCompare(bName);
+    })
+    .slice(0, 12);
+
+  if (!hits.length) {
+    suggestions.classList.add('hidden');
+    return;
+  }
+
+  hits.forEach(p => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'suggestion';
+    b.textContent = p.displayName;
+
+    b.addEventListener('click', () => {
+      selected = p;
+      input.value = p.displayName;
+      suggestions.classList.add('hidden');
+      input.focus();
+    });
+
+    suggestions.appendChild(b);
+  });
+
+  suggestions.classList.remove('hidden');
+}function getStats(){return JSON.parse(localStorage.getItem('stcdle_stats_v1')||'{"played":0,"wins":0,"streak":0,"maxStreak":0,"lastCompleted":null,"distribution":[0,0,0,0,0,0,0,0]}')}
 function updateStats(won){if(mode!=='daily')return;const today=dateKey(), s=getStats();if(s.lastCompleted===today)return;const yesterday=dateKey(new Date(Date.now()-DAY));s.played++;if(won){s.wins++;s.streak=s.lastCompleted===yesterday?s.streak+1:1;s.maxStreak=Math.max(s.maxStreak,s.streak);s.distribution[guesses.length-1]++}else s.streak=0;s.lastCompleted=today;localStorage.setItem('stcdle_stats_v1',JSON.stringify(s))}
 function renderStats(){const s=getStats();$('#statPlayed').textContent=s.played;$('#statWin').textContent=s.played?Math.round(s.wins/s.played*100)+'%':'0%';$('#statStreak').textContent=s.streak;$('#statMax').textContent=s.maxStreak;const box=$('#distribution');box.innerHTML='';const max=Math.max(1,...s.distribution);s.distribution.forEach((n,i)=>{const r=document.createElement('div');r.className='dist-row';r.innerHTML=`<span>${i+1}</span><div class="dist-bar" style="width:${Math.max(8,n/max*100)}%">${n}</div>`;box.appendChild(r)})}
 function emojiResult(){const won=guesses.at(-1)?.id===answer.id;const title=mode==='daily'?`STCdle #${Math.max(1,puzzleNumber())} ${won?guesses.length:'X'}/8`:`STCdle Practice ${won?guesses.length:'X'}/8`;const lines=guesses.map(g=>compare(g).map(([,c])=>c==='green'?'🟩':c==='yellow'?'🟨':'⬛').join(''));return `${title}\n\n${lines.join('\n')}`}
