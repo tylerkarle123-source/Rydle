@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#121213">
-  <meta name="description" content="STCdle — a daily Survivor Twin Cities castaway guessing game.">
-  <title>STCdle</title>
+  <meta name="description" content="Rydle — a daily Survivor Twin Cities castaway guessing game.">
+  <title>Rydle</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="topbar">
     <button id="helpBtn" class="icon-btn" aria-label="How to play">?</button>
-    <div class="brand"><h1>STCdle</h1><span>Survivor Twin Cities</span></div>
+    <div class="brand"><h1>Rydle</h1><span>Survivor Twin Cities</span></div>
     <button id="statsBtn" class="icon-btn" aria-label="Statistics">▥</button>
   </header>
 
@@ -19,6 +19,7 @@
     <nav class="mode-tabs" aria-label="Game mode">
       <button class="tab active" data-mode="daily">Daily</button>
       <button class="tab" data-mode="practice">Practice</button>
+      <button class="tab" data-mode="hard">Hard</button>
     </nav>
 
     <section class="intro">
@@ -55,7 +56,7 @@
 
     <details class="legend">
       <summary>Clue rules</summary>
-      <p><span class="swatch green"></span> Exact match. <span class="swatch yellow"></span> Season is 1 away or placement is within 2. Gray means farther/different.</p>
+      <p id="legendText"><span class="swatch green"></span> Exact match. <span class="swatch yellow"></span> Season is 1 away or placement is within 2. Gray means farther/different.</p>
       <p><strong>Season:</strong> ↑ answer is later, ↓ answer is earlier. <strong>Placement:</strong> ↑ answer placed better, ↓ answer placed worse.</p>
     </details>
   </main>
@@ -67,17 +68,18 @@
     <ul>
       <li>Green = exact match.</li><li>Yellow = season ±1 or placement ±2.</li><li>Season ↑ later / ↓ earlier.</li><li>Placement ↑ better / ↓ worse.</li><li>Gender, starting tribe color, and returnee are green or gray only.</li>
     </ul>
-    <p>Only full-length Seasons 1–8 are included.</p>
+    <p><strong>Classic</strong> includes full-length Seasons 1–8. <strong>Hard</strong> includes every STC event through Season 8.75, including minis and one-days, and adds a Format clue.</p>
   </dialog>
 
   <dialog id="statsDialog">
     <button class="dialog-close" data-close="statsDialog" aria-label="Close">×</button>
-    <h2>Daily statistics</h2>
+    <h2 id="statsTitle">Daily statistics</h2>
     <div class="stat-grid"><div><b id="statPlayed">0</b><span>Played</span></div><div><b id="statWin">0%</b><span>Win %</span></div><div><b id="statStreak">0</b><span>Streak</span></div><div><b id="statMax">0</b><span>Max</span></div></div>
     <h3>Guess distribution</h3><div id="distribution" class="distribution"></div>
   </dialog>
 
   <script src="players.js"></script>
+  <script src="players-hard.js"></script>
   <script src="game.js"></script>
 </body>
 </html>

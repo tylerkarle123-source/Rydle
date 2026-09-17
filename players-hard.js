@@ -1,0 +1,33 @@
+// Rydle Hard canonical mini/one-day appearance database.
+// Full-length appearances are imported from window.STC_PLAYERS (players.js).
+const STC_EVENT_ORDER = ['1','2','3','3.5','4','4.5','5','6','6.5','7','7.5','8','8.25','8.5','8.75'];
+
+const STC_MINI_RAW = {
+'3.5':[
+['Luke Miller',1,'M','Dijon Yellow','Yellow'],['Deidra Meyer',2,'F','Dijon Yellow','Yellow'],['Luis Barrientos Muñoz',3,'M','Pink Divas','Pink'],['Viola Lindell',4,'F','Dijon Yellow','Yellow'],['Eidan Silver',5,'M','Dijon Yellow','Yellow'],['Tyler Karle',6,'M','Blue Balls','Blue'],['Truong Vu',7,'M','Pink Divas','Pink'],['Yana King',8,'F','Pink Divas','Pink'],['Ashley McCann',9,'F','Blue Balls','Blue'],['Leo Newman',10,'M','Blue Balls','Blue'],['Logan Lestina',11,'M','Dijon Yellow','Yellow'],['Aidan Kadid',12,'M','Pink Divas','Pink'],['Griffin Jones',13,'M','Pink Divas','Pink'],['Dylan McKenzie',14,'F','Blue Balls','Blue'],['Alec Zadra',15,'M','Blue Balls','Blue'],['Ryder James',16,'M','Dijon Yellow','Yellow'],['Elizabeth Mulcahy',17,'F','Pink Divas','Pink']],
+'4.5':[
+['Truong Vu',1,'M','Red Hot Chili Peppers','Red'],["Ainsley O'Higgins",2,'F','Blue Man Group','Blue'],['Rakesh Plantz',3,'M','Green Day','Green'],['Alexandra Aker',4,'F','Red Hot Chili Peppers','Red'],['Eli Hanson',5,'M','Green Day','Green'],['Leo Newman',6,'M','Red Hot Chili Peppers','Red'],['Grace Haverkampf',7,'F','Green Day','Green'],['Tyler Karle',8,'M','Red Hot Chili Peppers','Red'],['Dylan McKenzie',9,'F','Green Day','Green'],['Vijaya Gopalan',10,'F','Blue Man Group','Blue'],['Aidan Kadid',11,'M','Blue Man Group','Blue'],['Sam Ahmed',12,'M','Blue Man Group','Blue'],['Kyle Jackson',13,'M','Green Day','Green'],['Jacob Grzesiak',14,'M','Blue Man Group','Blue'],["Jack O'Connell",15,'M','Blue Man Group','Blue'],['Izzy Calhoon',16,'F','Red Hot Chili Peppers','Red'],['Shoshana Prager',17,'F','Blue Man Group','Blue'],['Yana King',18,'F','Green Day','Green'],['Griffin Jones',19,'M','Red Hot Chili Peppers','Red'],['Eli Klawikowski',20,'M','Green Day','Green'],['Viola Lindell',21,'F','Red Hot Chili Peppers','Red']],
+'6.5':[
+['Emma Vasa',1,'F','Villains','Red'],['Keegan Hennessey',2,'M','Villains','Red'],['Alec Zadra',3,'M','Heroes','Blue'],['Teagan Beckley',4,'F','Heroes','Blue'],['Viola Lindell',5,'F','Villains','Red'],['Luis Barrientos Muñoz',6,'M','Heroes','Blue'],['Deidra Meyer',7,'F','Heroes','Blue'],['Jack Bellinger',8,'M','Villains','Red'],['Rachel Laws',9,'F','Villains','Red'],['Ryder James',10,'M','Villains','Red'],['Leon Savage',11,'M','Heroes','Blue'],['Ella Johnson',12,'F','Heroes','Blue'],['Leo Newman',13,'M','Heroes','Blue'],['Ethan Kraayeveld',14,'M','Villains','Red'],['Truong Vu',15,'M','Villains','Red'],['Aidan Kadid',16,'M','Villains','Red'],['Dea Bayk',17,'F','Heroes','Blue'],['Seth Delikowski',18,'M','Heroes','Blue']],
+'7.5':[
+['Tyler Wyninger',1,'M','Gamenots','Green'],['Leo Newman',2,'M','Gamebots','Purple'],['Logan Lestina',3,'M','Gamenots','Green'],['Julia Faig',4,'F','Gamebots','Purple'],["Jack O'Connell",5,'M','Gamebots','Purple'],['Ricardo Vazquez Montero',6,'M','Gamebots','Purple'],['Truong Vu',7,'M','Gamebots','Purple'],['Kaitlyn Sawyers',8,'F','Gamenots','Green'],['Carly Ermitage',9,'F','Gamebots','Purple'],['Lauren Steenberg',10,'F','Gamenots','Green'],['Grace Artery',11,'F','Gamenots','Green'],['Ethan Kraayeveld',12,'M','Gamebots','Purple'],['Jace Bancroft',13,'M','Gamebots','Purple'],['Dylan McKenzie',14,'F','Gamebots','Purple'],['Bridget Reilly',15,'F','Gamenots','Green'],['Keegan Hennessey',16,'M','Gamenots','Green'],['Michelle Villella',17,'F','Gamebots','Purple'],['Daigan Berger',18,'M','Gamenots','Green'],['Veeraj Chimanpure',19,'M','Gamenots','Green'],['Colin Nettesheim',20,'M','Gamenots','Green']],
+'8.25':[
+['Jacoby Andrews',1,'M','Nox','Blue'],['Dasiyah Franklin-Carter',2,'F','Vespera','Orange','2nd/3rd',2,3],['Derek Greathouse',2,'M','Vespera','Orange','2nd/3rd',2,3],['Charlie Hart',4,'M','Vespera','Orange'],['Najat Ahmed',5,'F','Vespera','Orange'],['Hannah Griggs',6,'F','Vespera','Orange'],['Maria Sohlakava',7,'F','Nox','Blue'],['Carina "Riri" Lopes Segura',8,'F','Nox','Blue'],['Maya Hoff',9,'F','Vespera','Orange'],['Maya Angiolo',10,'F','Nox','Blue'],['Matthew Pudjijantro',11,'M','Nox','Blue'],['Keith Houchins',12,'M','Vespera','Orange'],['Mason Olsansky',13,'M','Nox','Blue'],['Joey Bazzano',14,'M','Nox','Blue'],['Sophie Berbig',15,'F','Nox','Blue'],['Quinn Trench',16,'M','Vespera','Orange']],
+'8.5':[
+['Luke Miller',1,'M','Fuck','Red'],['Truong Vu',2,'M','Guns','Yellow','2nd/3rd',2,3],['Ricardo Vazquez Montero',2,'M','Guns','Yellow','2nd/3rd',2,3],['Olivia Cooper',4,'F','Guns','Yellow'],['Jace Bancroft',5,'M','Fuck','Red'],["Jack O'Connell",6,'M','Guns','Yellow'],['Ethan Kraayeveld',7,'M','Guns','Yellow'],['Tyler Wyninger',8,'M','Fuck','Red'],['Seth Delikowski',9,'M','Guns','Yellow'],['Dylan McKenzie',10,'F','Fuck','Red'],['Quinn Syed',11,'M','Fuck','Red'],['Hunter Mohs',12,'M','Fuck','Red'],['Tyler Karle',13,'M','Fuck','Red'],['Dasiyah Franklin-Carter',14,'F','Guns','Yellow']],
+'8.75':[
+['Lauren Steenberg',1,'F','Kami','Red'],['Leah Toth',2,'F','Kyna','Yellow'],['Jace Bancroft',3,'M','Kami','Red'],['Ethan Kraayeveld',4,'M','Kami','Red'],["Ainsley O'Higgins",5,'F','Kyna','Yellow'],['Keith Houchins',6,'M','Kyna','Yellow'],['Kate Abelson',7,'F','Kami','Red'],['Hunter Mohs',8,'M','Kami','Red'],['Alec Zadra',9,'M','Kyna','Yellow'],['Keegan Hennessey',10,'M','Kami','Red'],['Nick Bealke',11,'M','Kyna','Yellow'],['Colin Nettesheim',12,'M','Kyna','Yellow'],['Viola Lindell',13,'F','Kyna','Yellow'],['Seth Delikowski',14,'M','Kami','Red']]
+};
+
+const hardSlug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+const fullHard = window.STC_PLAYERS.map(p=>({...p,eventKey:String(p.season),eventIndex:STC_EVENT_ORDER.indexOf(String(p.season)),format:'Full',placementLow:p.placement,placementHigh:p.placement,placementDisplay:null}));
+const miniHard=[];
+Object.entries(STC_MINI_RAW).forEach(([season,rows])=>rows.forEach(r=>miniHard.push({
+ id:`${hardSlug(r[0])}_s${season.replace('.','_')}`,name:r[0],displayName:`${r[0]} (Season ${season})`,season:+season,eventKey:season,eventIndex:STC_EVENT_ORDER.indexOf(season),placement:r[1],placementDisplay:r[5]||null,placementLow:r[6]||r[1],placementHigh:r[7]||r[1],gender:r[2],startingTribe:r[3],tribeColor:r[4],format:'Mini'
+})));
+const allHard=[...fullHard,...miniHard];
+const hardNames=allHard.map(p=>p.name);
+const hardReturnees=new Set(hardNames.filter((n,i,a)=>a.indexOf(n)!==a.lastIndexOf(n)));
+allHard.forEach(p=>p.returnee=hardReturnees.has(p.name));
+window.STC_HARD_PLAYERS=allHard;
+window.STC_EVENT_ORDER=STC_EVENT_ORDER;

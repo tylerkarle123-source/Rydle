@@ -12,27 +12,14 @@ const STC_RAW = {
 };
 
 function stcSlug(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');}
+
 const RETURNING_PLAYERS = new Set(
-  Object.values(STC_RAW)
-    .flat()
-    .map(r => r[0])
-    .filter((name, index, allNames) =>
-      allNames.indexOf(name) !== allNames.lastIndexOf(name)
-    )
+  Object.values(STC_RAW).flat().map(r => r[0]).filter((name, index, allNames) => allNames.indexOf(name) !== allNames.lastIndexOf(name))
 );
 
-window.STC_PLAYERS = [];
-
-Object.entries(STC_RAW).forEach(([season, rows]) =>
-  rows.forEach(r => window.STC_PLAYERS.push({
-    id: `${stcSlug(r[0])}_s${season}`,
-    name: r[0],
-    displayName: `${r[0]} (Season ${season})`,
-    season: +season,
-    placement: r[1],
-    gender: r[2],
-    startingTribe: r[3],
-    tribeColor: r[4],
-    returnee: RETURNING_PLAYERS.has(r[0])
-  }))
-);
+window.STC_PLAYERS=[];
+Object.entries(STC_RAW).forEach(([season,rows])=>rows.forEach(r=>window.STC_PLAYERS.push({
+  id:`${stcSlug(r[0])}_s${season}`, name:r[0], displayName:`${r[0]} (Season ${season})`, season:+season,
+  placement:r[1], placementDisplay:null, gender:r[2], startingTribe:r[3], tribeColor:r[4],
+  returnee:RETURNING_PLAYERS.has(r[0]), format:'Full'
+})));
